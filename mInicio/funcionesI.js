@@ -16,6 +16,11 @@ function ocultarSecciones(){
     $("#guardar-EC").hide();
     $("#editar-EC").hide();
     $("#Listado-EC").hide();
+    //CREAR TEMA
+    $("#crearTema").hide();
+    $("#guardar-CT").hide();
+    $("#editar-CT").hide();
+    $("#Listado-CT").hide();
     //USUARIOS
 }
 
@@ -66,6 +71,22 @@ function verEstadoCivil(){
 
 function verUsuarios(){
     ocultarSecciones();
+}
+function verCrearTemas(){
+    ocultarSecciones();
+    $("#lblTitular").text("Crear Tema");
+    
+    $("#editar-CT").hide();
+    $("#guardar-CT").hide();
+    $("#Listado-CT").fadeIn();
+    $("#frmGuardar-CT")[0].reset();
+    $("#frmActualizar-CT")[0].reset();
+    $("#badgeInfo").text("Lista");
+
+    $("#crearTema").show();
+    llenar_lista_CT();
+    var idTema=$("#inicioIdTema").val()
+    aplicarTema(idTema,'otro');      
 }
 
 function abrirModalContra(){
@@ -146,6 +167,7 @@ function aplicarTema(id,validador){
                 //alertify.success(actividad,2);
 
                 if(validador=='enlace'){
+                    $("#audioTema")[0].play();
                     preloader(1,"Cambiando al tema "+tema);
                     actividad  ="Ha cambiado al tema "+tema;
                     var idUser=$("#inicioIdusuario").val();
@@ -157,7 +179,6 @@ function aplicarTema(id,validador){
                     return false; 
                 }
             }
-
         },
         error:function(xhr,status){
             alert("Error en metodo AJAX"); 
